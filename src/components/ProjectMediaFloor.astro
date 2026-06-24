@@ -4,46 +4,12 @@ const { project } = Astro.props;
 
 <div class="floor-row">
   <div class="side-band"></div>
+
   <section class="floor media-floor" aria-label={`${project.title} media`}>
     <div class="floor-bg">
       <img src={project.mediaFloorImage} alt="" loading="lazy" />
     </div>
-
-    <div class="floor-content">
-      <div class="media-item media-main">
-        <video
-          src={project.video}
-          poster={project.poster}
-          muted
-          loop
-          playsinline
-          preload="none"
-        ></video>
-      </div>
-
-
-    </div>
   </section>
+
   <div class="side-band"></div>
 </div>
-
-<script>
-  const videos = document.querySelectorAll("video");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  videos.forEach((video) => observer.observe(video));
-</script>
