@@ -1,0 +1,49 @@
+---
+const { project } = Astro.props;
+const hasVideo = Boolean(project.introVideo);
+---
+
+<div class="floor-row">
+  <div class="side-band"></div>
+
+  <section class="floor intro-floor" id={project.slug}>
+    <div class="floor-bg">
+      {hasVideo ? (
+        <video
+          src={project.introVideo}
+          poster={project.introImage}
+          muted
+          loop
+          playsinline
+          preload="none"
+          class="intro-video"
+        ></video>
+      ) : (
+        <img src={project.introImage} alt="" loading="lazy" />
+      )}
+    </div>
+  </section>
+
+  <div class="side-band"></div>
+</div>
+
+<script>
+  const videos = document.querySelectorAll(".intro-video");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  videos.forEach((video) => observer.observe(video));
+</script>

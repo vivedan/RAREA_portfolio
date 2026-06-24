@@ -1,5 +1,11 @@
 ---
+import "../styles/global.css";
 
+import projects from "../data/projects.js";
+import FloorSeparator from "../components/FloorSeparator.astro";
+import ProjectIntroFloor from "../components/ProjectIntroFloor.astro";
+import ProjectDescriptionFloor from "../components/ProjectDescriptionFloor.astro";
+import ProjectMediaFloor from "../components/ProjectMediaFloor.astro";
 ---
 
 <html lang="en">
@@ -9,9 +15,71 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>RareaStudio||Portfolio</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<main class="building">
+			<FloorSeparator />
+			<!--<section class="rooftop">
+				<h1>Rarea Studio</h1>
+				<p>Experience design, virtual spaces and architectural narratives.</p>
+			</section>-->
+			<div class="floor-row">
+  				<div class="side-band"></div>
+				<section class="floor" aria-label={"RareaStudio"}>
+					<div class="floor-bg">
+						<img src={"../public/media/rooftop/rooftop1.jpg"} alt="" loading="lazy" />
+					</div>
+				</section>
+			  <div class="side-band"></div>
+			</div>
+			<FloorSeparator />
+
+
+			<div class="floor-row">
+  				<div class="side-band"></div>
+				<section class="floor" aria-label={"RareaStudio"}>
+					<div class="floor-bg">
+						<img src={"../public/media/rooftop/rooftop2.jpg"} alt="" loading="lazy" />
+					</div>
+				</section>
+			  <div class="side-band"></div>
+			</div>
+			<FloorSeparator />
+						
+			<div class="floor-row">
+  				<div class="side-band"></div>
+				<section class="floor" aria-label={"RareaStudio"}>
+					<div class="floor-bg">
+						<img src={"../public/media/groundfloor/Clients2.jpg"} alt="" loading="lazy" />
+					</div>
+				</section>
+			  <div class="side-band"></div>
+			</div>
+			<FloorSeparator />
+
+			{projects.map((project) => (
+				<>
+					<ProjectIntroFloor project={project} />
+					<FloorSeparator />
+					<ProjectDescriptionFloor project={project} />
+					<FloorSeparator />
+					<ProjectMediaFloor project={project} />
+					<FloorSeparator />
+				</>
+			))}
+
+
+			<div class="floor-row">
+  				<div class="side-band"></div>
+				<section class="floor" aria-label={"RareaStudio"}>
+					<div class="floor-bg">
+						<img src={"../public/media/groundfloor/GroundFloor1.jpg"} alt="" loading="lazy" />
+					</div>
+				</section>
+			  <div class="side-band"></div>
+			</div>
+			<FloorSeparator />
+		</main>
 	</body>
 </html>

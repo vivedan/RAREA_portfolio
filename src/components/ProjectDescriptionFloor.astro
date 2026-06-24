@@ -1,0 +1,13 @@
+---
+const { project } = Astro.props;
+---
+
+<div class="floor-row">
+  <div class="side-band"></div>
+  <section class="floor description-floor" id={project.slug}>
+    <div class="floor-bg">
+      <img src={project.descriptionImage} alt="" loading="lazy" />
+    </div>
+  </section>
+  <div class="side-band"></div>
+</div>

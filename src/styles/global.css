@@ -1,0 +1,191 @@
+:root {
+  --floor-ratio: 20 / 7;
+  --bg: #f4f1ea;
+  --text: #151515;
+  --structure-size-forjado: 30px;
+  --structure-size-pilares: 20px;
+  --structure-texture: url("/media/Forjado_Texture_darkgrey1.jpg");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+img,
+video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.floor-row {
+  width: 100vw;
+  display: grid;
+  grid-template-columns:
+    var(--structure-size-pilares)
+    minmax(0, 1fr)
+    var(--structure-size-pilares);
+  align-items: stretch;
+}
+
+.side-band {
+  background-image: var(--structure-texture);
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  background-color: #3a3a3a;
+}
+
+/* One floor = full viewport width, fixed aspect ratio */
+.floor {
+  width: 100%;
+  aspect-ratio: var(--floor-ratio);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background image fills the full floor */
+.floor-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.floor-bg img,
+.floor-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content floats above the image */
+.floor-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* Floor separators */
+.floor-separator {
+  width: 100vw;
+  height: var(--structure-size-forjado);
+  background-image: var(--structure-texture);
+  background-repeat: repeat;
+  background-size: 200px;
+  background-color: #3a3a3a;
+}
+
+/* Intro floor glass panel */
+.glass-panel {
+  position: absolute;
+  left: 8vw;
+  bottom: 8vw;
+  width: min(420px, 36vw);
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.08);
+}
+
+.meta {
+  margin: 0 0 16px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.glass-panel h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.6rem, 3vw, 4rem);
+  line-height: 0.95;
+  font-weight: 400;
+}
+
+.glass-panel p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Media floor floating items */
+.media-item {
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
+}
+
+.media-main {
+  left: 10vw;
+  top: 10%;
+  width: 48vw;
+  height: 54%;
+}
+
+.media-small-1 {
+  right: 10vw;
+  top: 12%;
+  width: 24vw;
+  height: 28%;
+}
+
+.media-small-2 {
+  right: 16vw;
+  bottom: 12%;
+  width: 32vw;
+  height: 30%;
+}
+
+.media-small-3 {
+  left: 50vw;
+  top: 52%;
+  width: 18vw;
+  height: 22%;
+}
+
+/* Mobile: keep same logic, but avoid tiny text/panels */
+@media (max-width: 760px) {
+
+  .glass-panel {
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    width: auto;
+    padding: 20px;
+  }
+
+  .media-main {
+    left: 8vw;
+    top: 10%;
+    width: 84vw;
+    height: 32%;
+  }
+
+  .media-small-1 {
+    left: 8vw;
+    right: auto;
+    top: 48%;
+    width: 40vw;
+    height: 22%;
+  }
+
+  .media-small-2 {
+    right: 8vw;
+    bottom: 10%;
+    width: 48vw;
+    height: 24%;
+  }
+
+  .media-small-3 {
+    display: none;
+  }
+}
